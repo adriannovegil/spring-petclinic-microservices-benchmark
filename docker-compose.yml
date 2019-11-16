@@ -7,14 +7,19 @@ services:
   config-server:
     image: sashimi-benchmark/spring-petclinic-config-server
     container_name: sashimi-benchmark-config-server
+    volumes:
+      - /home/adrian/.m2:/root/.m2
     entrypoint: ["sh", "-c","
+      java -jar /app.jar --thin.dryrun --thin.root=. &&
       java -noverify 
       -XX:+UnlockExperimentalVMOptions 
       -XX:+UseCGroupMemoryLimitForHeap 
       -XX:TieredStopAtLevel=1 
-      -Dspring.jmx.enabled=false
-      -Djava.security.egd=file:/dev/./urandom
-      -jar /app.jar"]
+      -Dspring.jmx.enabled=false 
+      -Djava.security.egd=file:/dev/./urandom 
+      -jar /app.jar 
+      --thin.root=. 
+      --thin.dryrun=false"]
     ports:
       - 8888:8888
 
@@ -22,17 +27,22 @@ services:
   discovery-server:
     image: sashimi-benchmark/spring-petclinic-discovery-server
     container_name: sashimi-benchmark-discovery-server
+    volumes:
+      - /home/adrian/.m2:/root/.m2
     depends_on:
       - config-server
     entrypoint: ["sh", "-c","
       ./dockerize -wait=tcp://config-server:8888 -timeout=300s -- &&
+      java -jar /app.jar --thin.dryrun --thin.root=. &&
       java -noverify 
       -XX:+UnlockExperimentalVMOptions 
       -XX:+UseCGroupMemoryLimitForHeap 
       -XX:TieredStopAtLevel=1 
       -Dspring.jmx.enabled=false
-      -Djava.security.egd=file:/dev/./urandom
-      -jar /app.jar"]
+      -Djava.security.egd=file:/dev/./urandom 
+      -jar /app.jar 
+      --thin.root=. 
+      --thin.dryrun=false"]
     ports:
       - 8761:8761
 
@@ -42,18 +52,23 @@ services:
   customers-service:
     image: sashimi-benchmark/spring-petclinic-customers-service
     container_name: sashimi-benchmark-customers-service
+    volumes:
+      - /home/adrian/.m2:/root/.m2
     depends_on:
       - config-server
       - discovery-server
     entrypoint: ["sh", "-c","
       ./dockerize -wait=tcp://discovery-server:8761 -timeout=300s -- &&
+      java -jar /app.jar --thin.dryrun --thin.root=. &&
       java -noverify 
       -XX:+UnlockExperimentalVMOptions 
       -XX:+UseCGroupMemoryLimitForHeap 
       -XX:TieredStopAtLevel=1 
       -Dspring.jmx.enabled=false
-      -Djava.security.egd=file:/dev/./urandom
-      -jar /app.jar"]
+      -Djava.security.egd=file:/dev/./urandom 
+      -jar /app.jar 
+      --thin.root=. 
+      --thin.dryrun=false"]
     ports:
       - 8081:8081
 
@@ -61,18 +76,23 @@ services:
   visits-service:
     image: sashimi-benchmark/spring-petclinic-visits-service
     container_name: sashimi-benchmark-visits-service
+    volumes:
+      - /home/adrian/.m2:/root/.m2
     depends_on:
       - config-server
       - discovery-server
     entrypoint: ["sh", "-c","
       ./dockerize -wait=tcp://discovery-server:8761 -timeout=300s -- &&
+      java -jar /app.jar --thin.dryrun --thin.root=. &&
       java -noverify 
       -XX:+UnlockExperimentalVMOptions 
       -XX:+UseCGroupMemoryLimitForHeap 
       -XX:TieredStopAtLevel=1 
       -Dspring.jmx.enabled=false
-      -Djava.security.egd=file:/dev/./urandom
-      -jar /app.jar"]
+      -Djava.security.egd=file:/dev/./urandom 
+      -jar /app.jar 
+      --thin.root=. 
+      --thin.dryrun=false"]
     ports:
       - 8082:8082
 
@@ -80,18 +100,23 @@ services:
   vets-service:
     image: sashimi-benchmark/spring-petclinic-vets-service
     container_name: sashimi-benchmark-vets-service
+    volumes:
+      - /home/adrian/.m2:/root/.m2
     depends_on:
       - config-server
       - discovery-server
     entrypoint: ["sh", "-c","
       ./dockerize -wait=tcp://discovery-server:8761 -timeout=300s -- &&
+      java -jar /app.jar --thin.dryrun --thin.root=. &&
       java -noverify 
       -XX:+UnlockExperimentalVMOptions 
       -XX:+UseCGroupMemoryLimitForHeap 
       -XX:TieredStopAtLevel=1 
       -Dspring.jmx.enabled=false
-      -Djava.security.egd=file:/dev/./urandom
-      -jar /app.jar"]
+      -Djava.security.egd=file:/dev/./urandom 
+      -jar /app.jar 
+      --thin.root=. 
+      --thin.dryrun=false"]
     ports:
       - 8083:8083
 
@@ -99,18 +124,23 @@ services:
   api-gateway:
     image: sashimi-benchmark/spring-petclinic-api-gateway
     container_name: sashimi-benchmark-api-gateway
+    volumes:
+      - /home/adrian/.m2:/root/.m2
     depends_on:
       - config-server
       - discovery-server
     entrypoint: ["sh", "-c","
       ./dockerize -wait=tcp://discovery-server:8761 -timeout=300s -- &&
+      java -jar /app.jar --thin.dryrun --thin.root=. &&
       java -noverify 
       -XX:+UnlockExperimentalVMOptions 
       -XX:+UseCGroupMemoryLimitForHeap 
       -XX:TieredStopAtLevel=1 
       -Dspring.jmx.enabled=false
-      -Djava.security.egd=file:/dev/./urandom
-      -jar /app.jar"]
+      -Djava.security.egd=file:/dev/./urandom 
+      -jar /app.jar 
+      --thin.root=. 
+      --thin.dryrun=false"]
     ports:
       - 8080:8080
 
@@ -119,18 +149,23 @@ services:
   admin-server:
     image: sashimi-benchmark/spring-petclinic-admin-server
     container_name: sashimi-benchmark-admin-server
+    volumes:
+      - /home/adrian/.m2:/root/.m2
     depends_on:
      - config-server
      - discovery-server
     entrypoint: ["sh", "-c","
       ./dockerize -wait=tcp://config-server:8888 -timeout=300s -- &&
+      java -jar /app.jar --thin.dryrun --thin.root=. &&
       java -noverify 
       -XX:+UnlockExperimentalVMOptions 
       -XX:+UseCGroupMemoryLimitForHeap 
       -XX:TieredStopAtLevel=1 
       -Dspring.jmx.enabled=false
-      -Djava.security.egd=file:/dev/./urandom
-      -jar /app.jar"]
+      -Djava.security.egd=file:/dev/./urandom 
+      -jar /app.jar 
+      --thin.root=. 
+      --thin.dryrun=false"]
     ports:
      - 9090:9090
 
@@ -139,18 +174,23 @@ services:
   hystrix-dashboard:
     image: sashimi-benchmark/spring-petclinic-hystrix-dashboard
     container_name: sashimi-benchmark-hystrix-dashboard
+    volumes:
+      - /home/adrian/.m2:/root/.m2
     depends_on:
      - config-server
      - discovery-server
     entrypoint: ["sh", "-c","
       ./dockerize -wait=tcp://config-server:8888 -timeout=300s -- &&
+      java -jar /app.jar --thin.dryrun --thin.root=. &&
       java -noverify 
       -XX:+UnlockExperimentalVMOptions 
       -XX:+UseCGroupMemoryLimitForHeap 
       -XX:TieredStopAtLevel=1 
       -Dspring.jmx.enabled=false
-      -Djava.security.egd=file:/dev/./urandom
-      -jar /app.jar"]
+      -Djava.security.egd=file:/dev/./urandom 
+      -jar /app.jar 
+      --thin.root=. 
+      --thin.dryrun=false"]
     ports:
      - 7979:7979
 
