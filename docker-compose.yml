@@ -8,7 +8,11 @@ services:
     image: sashimi-benchmark/spring-petclinic-config-server
     container_name: sashimi-benchmark-config-server
     entrypoint: ["sh", "-c","
-      java -XX:+UnlockExperimentalVMOptions -XX:+UseCGroupMemoryLimitForHeap -Djava.security.egd=file:/dev/./urandom
+      java -noverify 
+      -XX:+UnlockExperimentalVMOptions 
+      -XX:+UseCGroupMemoryLimitForHeap 
+      -XX:TieredStopAtLevel=1 
+      -Djava.security.egd=file:/dev/./urandom
       -jar /app.jar"]
     ports:
       - 8888:8888
@@ -21,7 +25,11 @@ services:
       - config-server
     entrypoint: ["sh", "-c","
       ./dockerize -wait=tcp://config-server:8888 -timeout=300s -- &&
-      java -XX:+UnlockExperimentalVMOptions -XX:+UseCGroupMemoryLimitForHeap -Djava.security.egd=file:/dev/./urandom
+      java -noverify 
+      -XX:+UnlockExperimentalVMOptions 
+      -XX:+UseCGroupMemoryLimitForHeap 
+      -XX:TieredStopAtLevel=1 
+      -Djava.security.egd=file:/dev/./urandom
       -jar /app.jar"]
     ports:
       - 8761:8761
@@ -37,7 +45,11 @@ services:
       - discovery-server
     entrypoint: ["sh", "-c","
       ./dockerize -wait=tcp://discovery-server:8761 -timeout=300s -- &&
-      java -XX:+UnlockExperimentalVMOptions -XX:+UseCGroupMemoryLimitForHeap -Djava.security.egd=file:/dev/./urandom
+      java -noverify 
+      -XX:+UnlockExperimentalVMOptions 
+      -XX:+UseCGroupMemoryLimitForHeap 
+      -XX:TieredStopAtLevel=1 
+      -Djava.security.egd=file:/dev/./urandom
       -jar /app.jar"]
     ports:
       - 8081:8081
@@ -51,7 +63,11 @@ services:
       - discovery-server
     entrypoint: ["sh", "-c","
       ./dockerize -wait=tcp://discovery-server:8761 -timeout=300s -- &&
-      java -XX:+UnlockExperimentalVMOptions -XX:+UseCGroupMemoryLimitForHeap -Djava.security.egd=file:/dev/./urandom
+      java -noverify 
+      -XX:+UnlockExperimentalVMOptions 
+      -XX:+UseCGroupMemoryLimitForHeap 
+      -XX:TieredStopAtLevel=1 
+      -Djava.security.egd=file:/dev/./urandom
       -jar /app.jar"]
     ports:
       - 8082:8082
@@ -65,7 +81,11 @@ services:
       - discovery-server
     entrypoint: ["sh", "-c","
       ./dockerize -wait=tcp://discovery-server:8761 -timeout=300s -- &&
-      java -XX:+UnlockExperimentalVMOptions -XX:+UseCGroupMemoryLimitForHeap -Djava.security.egd=file:/dev/./urandom
+      java -noverify 
+      -XX:+UnlockExperimentalVMOptions 
+      -XX:+UseCGroupMemoryLimitForHeap 
+      -XX:TieredStopAtLevel=1 
+      -Djava.security.egd=file:/dev/./urandom
       -jar /app.jar"]
     ports:
       - 8083:8083
@@ -79,7 +99,11 @@ services:
       - discovery-server
     entrypoint: ["sh", "-c","
       ./dockerize -wait=tcp://discovery-server:8761 -timeout=300s -- &&
-      java -XX:+UnlockExperimentalVMOptions -XX:+UseCGroupMemoryLimitForHeap -Djava.security.egd=file:/dev/./urandom
+      java -noverify 
+      -XX:+UnlockExperimentalVMOptions 
+      -XX:+UseCGroupMemoryLimitForHeap 
+      -XX:TieredStopAtLevel=1 
+      -Djava.security.egd=file:/dev/./urandom
       -jar /app.jar"]
     ports:
       - 8080:8080
@@ -94,7 +118,11 @@ services:
      - discovery-server
     entrypoint: ["sh", "-c","
       ./dockerize -wait=tcp://config-server:8888 -timeout=300s -- &&
-      java -XX:+UnlockExperimentalVMOptions -XX:+UseCGroupMemoryLimitForHeap -Djava.security.egd=file:/dev/./urandom
+      java -noverify 
+      -XX:+UnlockExperimentalVMOptions 
+      -XX:+UseCGroupMemoryLimitForHeap 
+      -XX:TieredStopAtLevel=1 
+      -Djava.security.egd=file:/dev/./urandom
       -jar /app.jar"]
     ports:
      - 9090:9090
@@ -109,7 +137,11 @@ services:
      - discovery-server
     entrypoint: ["sh", "-c","
       ./dockerize -wait=tcp://config-server:8888 -timeout=300s -- &&
-      java -XX:+UnlockExperimentalVMOptions -XX:+UseCGroupMemoryLimitForHeap -Djava.security.egd=file:/dev/./urandom
+      java -noverify 
+      -XX:+UnlockExperimentalVMOptions 
+      -XX:+UseCGroupMemoryLimitForHeap 
+      -XX:TieredStopAtLevel=1 
+      -Djava.security.egd=file:/dev/./urandom
       -jar /app.jar"]
     ports:
      - 7979:7979
