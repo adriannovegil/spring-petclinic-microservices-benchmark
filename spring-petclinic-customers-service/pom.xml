@@ -5,7 +5,7 @@
 
     <parent>
         <groupId>org.springframework.samples</groupId>
-        <artifactId>spring-petclinic-microservices-sashimi</artifactId>
+        <artifactId>spring-petclinic-microservices-sashimi-benchmark</artifactId>
         <version>2.1.4</version>
     </parent>
 

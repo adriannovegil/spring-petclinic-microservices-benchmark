@@ -5,8 +5,8 @@ services:
   # ============================================================================
   # Config server
   config-server:
-    image: sashimi/spring-petclinic-config-server
-    container_name: sashimi-config-server
+    image: sashimi-benchmark/spring-petclinic-config-server
+    container_name: sashimi-benchmark-config-server
     entrypoint: ["sh", "-c","
       java -XX:+UnlockExperimentalVMOptions -XX:+UseCGroupMemoryLimitForHeap -Djava.security.egd=file:/dev/./urandom
       -jar /app.jar"]
@@ -15,8 +15,8 @@ services:
 
   # Discovery service
   discovery-server:
-    image: sashimi/spring-petclinic-discovery-server
-    container_name: sashimi-discovery-server
+    image: sashimi-benchmark/spring-petclinic-discovery-server
+    container_name: sashimi-benchmark-discovery-server
     depends_on:
       - config-server
     entrypoint: ["sh", "-c","
@@ -30,8 +30,8 @@ services:
   # ============================================================================
   # Customers service
   customers-service:
-    image: sashimi/spring-petclinic-customers-service
-    container_name: sashimi-customers-service
+    image: sashimi-benchmark/spring-petclinic-customers-service
+    container_name: sashimi-benchmark-customers-service
     depends_on:
       - config-server
       - discovery-server
@@ -44,8 +44,8 @@ services:
 
   # Visits service
   visits-service:
-    image: sashimi/spring-petclinic-visits-service
-    container_name: sashimi-visits-service
+    image: sashimi-benchmark/spring-petclinic-visits-service
+    container_name: sashimi-benchmark-visits-service
     depends_on:
       - config-server
       - discovery-server
@@ -58,8 +58,8 @@ services:
 
   #Vets service
   vets-service:
-    image: sashimi/spring-petclinic-vets-service
-    container_name: sashimi-vets-service
+    image: sashimi-benchmark/spring-petclinic-vets-service
+    container_name: sashimi-benchmark-vets-service
     depends_on:
       - config-server
       - discovery-server
@@ -72,8 +72,8 @@ services:
 
   # API gateway
   api-gateway:
-    image: sashimi/spring-petclinic-api-gateway
-    container_name: sashimi-api-gateway
+    image: sashimi-benchmark/spring-petclinic-api-gateway
+    container_name: sashimi-benchmark-api-gateway
     depends_on:
       - config-server
       - discovery-server
@@ -87,8 +87,8 @@ services:
   # Admin Server
   # ============================================================================
   admin-server:
-    image: sashimi/spring-petclinic-admin-server
-    container_name: sashimi-admin-server
+    image: sashimi-benchmark/spring-petclinic-admin-server
+    container_name: sashimi-benchmark-admin-server
     depends_on:
      - config-server
      - discovery-server
@@ -102,8 +102,8 @@ services:
   # Circuit breaker
   # ============================================================================
   hystrix-dashboard:
-    image: sashimi/spring-petclinic-hystrix-dashboard
-    container_name: sashimi-hystrix-dashboard
+    image: sashimi-benchmark/spring-petclinic-hystrix-dashboard
+    container_name: sashimi-benchmark-hystrix-dashboard
     depends_on:
      - config-server
      - discovery-server
@@ -119,8 +119,8 @@ services:
   # Load server
   load-server:
     build: ./docker/load-server
-    image: sashimi/load-server
-    container_name: sashimi-load-server
+    image: sashimi-benchmark/load-server
+    container_name: sashimi-benchmark-load-server
     depends_on:
       - api-gateway
       - customers-service
