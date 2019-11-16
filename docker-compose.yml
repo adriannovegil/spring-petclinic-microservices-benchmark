@@ -12,6 +12,7 @@ services:
       -XX:+UnlockExperimentalVMOptions 
       -XX:+UseCGroupMemoryLimitForHeap 
       -XX:TieredStopAtLevel=1 
+      -Dspring.jmx.enabled=false
       -Djava.security.egd=file:/dev/./urandom
       -jar /app.jar"]
     ports:
@@ -29,6 +30,7 @@ services:
       -XX:+UnlockExperimentalVMOptions 
       -XX:+UseCGroupMemoryLimitForHeap 
       -XX:TieredStopAtLevel=1 
+      -Dspring.jmx.enabled=false
       -Djava.security.egd=file:/dev/./urandom
       -jar /app.jar"]
     ports:
@@ -49,6 +51,7 @@ services:
       -XX:+UnlockExperimentalVMOptions 
       -XX:+UseCGroupMemoryLimitForHeap 
       -XX:TieredStopAtLevel=1 
+      -Dspring.jmx.enabled=false
       -Djava.security.egd=file:/dev/./urandom
       -jar /app.jar"]
     ports:
@@ -67,6 +70,7 @@ services:
       -XX:+UnlockExperimentalVMOptions 
       -XX:+UseCGroupMemoryLimitForHeap 
       -XX:TieredStopAtLevel=1 
+      -Dspring.jmx.enabled=false
       -Djava.security.egd=file:/dev/./urandom
       -jar /app.jar"]
     ports:
@@ -85,6 +89,7 @@ services:
       -XX:+UnlockExperimentalVMOptions 
       -XX:+UseCGroupMemoryLimitForHeap 
       -XX:TieredStopAtLevel=1 
+      -Dspring.jmx.enabled=false
       -Djava.security.egd=file:/dev/./urandom
       -jar /app.jar"]
     ports:
@@ -103,6 +108,7 @@ services:
       -XX:+UnlockExperimentalVMOptions 
       -XX:+UseCGroupMemoryLimitForHeap 
       -XX:TieredStopAtLevel=1 
+      -Dspring.jmx.enabled=false
       -Djava.security.egd=file:/dev/./urandom
       -jar /app.jar"]
     ports:
@@ -122,6 +128,7 @@ services:
       -XX:+UnlockExperimentalVMOptions 
       -XX:+UseCGroupMemoryLimitForHeap 
       -XX:TieredStopAtLevel=1 
+      -Dspring.jmx.enabled=false
       -Djava.security.egd=file:/dev/./urandom
       -jar /app.jar"]
     ports:
@@ -141,6 +148,7 @@ services:
       -XX:+UnlockExperimentalVMOptions 
       -XX:+UseCGroupMemoryLimitForHeap 
       -XX:TieredStopAtLevel=1 
+      -Dspring.jmx.enabled=false
       -Djava.security.egd=file:/dev/./urandom
       -jar /app.jar"]
     ports:
