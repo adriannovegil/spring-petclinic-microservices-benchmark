@@ -1,10 +1,10 @@
 # Distributed version of the Spring PetClinic Sample Application built with Spring Cloud
 
-__RAW Version__
+__Benchmark__
 
 ## Starting services locally without Docker
 
-Every microservice is a Spring Boot application and can be started locally using IDE or `../mvnw spring-boot:run` command.
+Every microservice is a Spring Boot application and can be started locally using IDE or `./mvnw spring-boot:run` command.
 
 Please note that supporting services (__Config and Discovery Server__) must be started before any other application (Customers, Vets, Visits and API).
 
@@ -80,4 +80,5 @@ the host and port of your MySQL JDBC connection string.
 
 ## References
 
+ * https://github.com/spring-petclinic/spring-petclinic-microservices
  * http://trustmeiamadeveloper.com/2016/03/18/where-is-my-memory-java/
