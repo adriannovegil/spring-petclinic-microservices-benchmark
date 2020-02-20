@@ -10,10 +10,11 @@ services:
     volumes:
       - /home/adrian/.m2:/root/.m2
     entrypoint: ["sh", "-c","
-      java -jar /app.jar --thin.dryrun --thin.root=. &&
+      java -jar app.jar --thin.dryrun --thin.root=. &&
       java -XX:+UseAppCDS -XX:DumpLoadedClassList=app.lst -Xshare:dump -XX:SharedArchiveFile=app.jsa --class-path app.jar &&
       java -noverify 
       -XX:+UnlockExperimentalVMOptions
+      -XX:+UseJVMCICompiler 
       -XX:TieredStopAtLevel=1 
       -Dspring.jmx.enabled=false 
       -Djava.security.egd=file:/dev/./urandom 
@@ -36,17 +37,18 @@ services:
       - config-server
     entrypoint: ["sh", "-c","
       ./dockerize -wait=tcp://config-server:8888 -timeout=300s -- &&
-      java -jar /app.jar --thin.dryrun --thin.root=. &&
+      java -jar app.jar --thin.dryrun --thin.root=. &&
       java -XX:+UseAppCDS -XX:DumpLoadedClassList=app.lst -Xshare:dump -XX:SharedArchiveFile=app.jsa --class-path app.jar &&
       java -noverify 
       -XX:+UnlockExperimentalVMOptions 
+      -XX:+UseJVMCICompiler 
       -XX:TieredStopAtLevel=1 
       -Dspring.jmx.enabled=false
       -Djava.security.egd=file:/dev/./urandom 
       -Xshare:on 
       -XX:+UseAppCDS 
       -XX:SharedArchiveFile=app.jsa 
-      -jar /app.jar 
+      -jar app.jar 
       --thin.root=. 
       --thin.dryrun=false"]
     ports:
@@ -65,17 +67,18 @@ services:
       - discovery-server
     entrypoint: ["sh", "-c","
       ./dockerize -wait=tcp://discovery-server:8761 -timeout=300s -- &&
-      java -jar /app.jar --thin.dryrun --thin.root=. &&
+      java -jar app.jar --thin.dryrun --thin.root=. &&
       java -XX:+UseAppCDS -XX:DumpLoadedClassList=app.lst -Xshare:dump -XX:SharedArchiveFile=app.jsa --class-path app.jar &&
       java -noverify 
       -XX:+UnlockExperimentalVMOptions 
+      -XX:+UseJVMCICompiler 
       -XX:TieredStopAtLevel=1 
       -Dspring.jmx.enabled=false
       -Djava.security.egd=file:/dev/./urandom 
       -Xshare:on 
       -XX:+UseAppCDS 
       -XX:SharedArchiveFile=app.jsa 
-      -jar /app.jar 
+      -jar app.jar 
       --thin.root=. 
       --thin.dryrun=false"]
     ports:
@@ -92,17 +95,18 @@ services:
       - discovery-server
     entrypoint: ["sh", "-c","
       ./dockerize -wait=tcp://discovery-server:8761 -timeout=300s -- &&
-      java -jar /app.jar --thin.dryrun --thin.root=. &&
+      java -jar app.jar --thin.dryrun --thin.root=. &&
       java -XX:+UseAppCDS -XX:DumpLoadedClassList=app.lst -Xshare:dump -XX:SharedArchiveFile=app.jsa --class-path app.jar &&
       java -noverify 
       -XX:+UnlockExperimentalVMOptions 
+      -XX:+UseJVMCICompiler 
       -XX:TieredStopAtLevel=1 
       -Dspring.jmx.enabled=false
       -Djava.security.egd=file:/dev/./urandom 
       -Xshare:on 
       -XX:+UseAppCDS 
       -XX:SharedArchiveFile=app.jsa 
-      -jar /app.jar 
+      -jar app.jar 
       --thin.root=. 
       --thin.dryrun=false"]
     ports:
@@ -119,17 +123,18 @@ services:
       - discovery-server
     entrypoint: ["sh", "-c","
       ./dockerize -wait=tcp://discovery-server:8761 -timeout=300s -- &&
-      java -jar /app.jar --thin.dryrun --thin.root=. &&
+      java -jar app.jar --thin.dryrun --thin.root=. &&
       java -XX:+UseAppCDS -XX:DumpLoadedClassList=app.lst -Xshare:dump -XX:SharedArchiveFile=app.jsa --class-path app.jar &&
       java -noverify 
       -XX:+UnlockExperimentalVMOptions 
+      -XX:+UseJVMCICompiler 
       -XX:TieredStopAtLevel=1 
       -Dspring.jmx.enabled=false
       -Djava.security.egd=file:/dev/./urandom 
       -Xshare:on 
       -XX:+UseAppCDS 
       -XX:SharedArchiveFile=app.jsa 
-      -jar /app.jar 
+      -jar app.jar 
       --thin.root=. 
       --thin.dryrun=false"]
     ports:
@@ -146,17 +151,18 @@ services:
       - discovery-server
     entrypoint: ["sh", "-c","
       ./dockerize -wait=tcp://discovery-server:8761 -timeout=300s -- &&
-      java -jar /app.jar --thin.dryrun --thin.root=. &&
+      java -jar app.jar --thin.dryrun --thin.root=. &&
       java -XX:+UseAppCDS -XX:DumpLoadedClassList=app.lst -Xshare:dump -XX:SharedArchiveFile=app.jsa --class-path app.jar &&
       java -noverify 
       -XX:+UnlockExperimentalVMOptions 
+      -XX:+UseJVMCICompiler 
       -XX:TieredStopAtLevel=1 
       -Dspring.jmx.enabled=false
       -Djava.security.egd=file:/dev/./urandom 
       -Xshare:on 
       -XX:+UseAppCDS 
       -XX:SharedArchiveFile=app.jsa 
-      -jar /app.jar 
+      -jar app.jar 
       --thin.root=. 
       --thin.dryrun=false"]
     ports:
@@ -174,17 +180,18 @@ services:
      - discovery-server
     entrypoint: ["sh", "-c","
       ./dockerize -wait=tcp://config-server:8888 -timeout=300s -- &&
-      java -jar /app.jar --thin.dryrun --thin.root=. &&
+      java -jar app.jar --thin.dryrun --thin.root=. &&
       java -XX:+UseAppCDS -XX:DumpLoadedClassList=app.lst -Xshare:dump -XX:SharedArchiveFile=app.jsa --class-path app.jar &&
       java -noverify 
       -XX:+UnlockExperimentalVMOptions 
+      -XX:+UseJVMCICompiler 
       -XX:TieredStopAtLevel=1 
       -Dspring.jmx.enabled=false
       -Djava.security.egd=file:/dev/./urandom 
       -Xshare:on 
       -XX:+UseAppCDS 
       -XX:SharedArchiveFile=app.jsa 
-      -jar /app.jar 
+      -jar app.jar 
       --thin.root=. 
       --thin.dryrun=false"]
     ports:
@@ -202,17 +209,18 @@ services:
      - discovery-server
     entrypoint: ["sh", "-c","
       ./dockerize -wait=tcp://config-server:8888 -timeout=300s -- &&
-      java -jar /app.jar --thin.dryrun --thin.root=. &&
+      java -jar app.jar --thin.dryrun --thin.root=. &&
       java -XX:+UseAppCDS -XX:DumpLoadedClassList=app.lst -Xshare:dump -XX:SharedArchiveFile=app.jsa --class-path app.jar &&
       java -noverify 
       -XX:+UnlockExperimentalVMOptions 
+      -XX:+UseJVMCICompiler 
       -XX:TieredStopAtLevel=1 
       -Dspring.jmx.enabled=false
       -Djava.security.egd=file:/dev/./urandom 
       -Xshare:on 
       -XX:+UseAppCDS 
       -XX:SharedArchiveFile=app.jsa 
-      -jar /app.jar 
+      -jar app.jar 
       --thin.root=. 
       --thin.dryrun=false"]
     ports:

@@ -77,3 +77,7 @@ ENV SPRING_PROFILES_ACTIVE docker,mysql
 ```
 In the `mysql section` of the `application.yml` from the [Configuration repository], you have to change
 the host and port of your MySQL JDBC connection string.
+
+## References
+
+ * http://trustmeiamadeveloper.com/2016/03/18/where-is-my-memory-java/
